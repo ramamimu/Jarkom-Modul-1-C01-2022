@@ -41,6 +41,42 @@ hasil yang didapat adalah sebagai berikut
 - display filter: ` ip.src_host == 192.168.255.24`
 
 ![img 1](./assets/7_1.png)
+## 8. Telusuri aliran paket dalam file .pcap yang diberikan, cari informasi berguna berupa percakapan antara dua mahasiswa terkait tindakan kecurangan pada kegiatan praktikum. Percakapan tersebut dilaporkan menggunakan protokol jaringan dengan tingkat keandalan yang tinggi dalam pertukaran datanya sehingga kalian perlu menerapkan filter dengan protokol yang tersebut.
+
+- display filter: ` tcp.flags.push == 1`
+Protokol jaringan yang memiliki tingkat keandalah pertukaran data yang tinggi adalah protokol TCP. Namun jika dilihat, hasil filter dari display filter ` tcp` saja akan mengeluarkan banyak paket. Oleh karena itu kita dapat menggunakan ` tcp.flags.push == 1` untuk filter packet yang mempunyai flag PSH, yang berarti paket langsung dikirimkan ke application layer.
+
+![img 1](./assets/8_1.png)
+
+## 9. Terdapat laporan adanya pertukaran file yang dilakukan oleh kedua mahasiswa dalam percakapan yang diperoleh, carilah file yang dimaksud! Untuk memudahkan laporan kepada atasan, beri nama file yang ditemukan dengan format [nama_kelompok].des3 dan simpan output file dengan nama “flag.txt”.
+
+- dari salah satu message yang ada, kita dapat melihat bahwa file dikirim pada port 9002 dan tersimpan sebagai file salt.
+
+![img 1](./assets/9_1.png)
+
+- setelah menggunakan filter ` tcp.port == 9002 and ip.src == 127.0.1.1 and ip.dst == 127.0.0.1` kita akan mendapatkan file salt.
+
+![img 1](./assets/9_2.png)
+
+- lalu kita dapat save file as raw.
+
+![img 1](./assets/9_3.png)
+
+- isi file raw:
+
+![img 1](./assets/9_4.png)
+
+- lalu kita dapat menggunakan openssl untuk decrypt isi file menggunakan password yang didapatkan dari sejarah pesan antar kedua pihak.
+
+![img 1](./assets/9_5.png)
+
+- hasil file output:
+
+![img 1](./assets/9_6.png)
+
+## 10. Temukan password rahasia (flag) dari organisasi bawah tanah yang disebutkan di atas!
+
+- dari hasil no. 9, didapatkan flag `8uK4N_CtF_k0k_h3h3h3`
 
 ## Kesulitan
 
