@@ -30,6 +30,24 @@ hasil yang didapat adalah sebagai berikut
 
 - Judul: `Evaluasi unjuk kerja User Space Filesystem (FUSE)`
 
+## 3. Filter sehingga wireshark hanya menampilkan paket yang menuju port 80! 
+
+- display filter: `tcp.dstport == 80 || udp.dstport == 80`
+
+![img 3](./assets/3_1.png)
+
+## 4. Filter sehingga wireshark hanya mengambil paket yang berasal dari port 21!
+
+- display filter: `tcp.srcport == 21 || udp.srcport == 21`
+
+![img 4](./assets/4_1.png)
+
+## 5. Filter sehingga wireshark hanya mengambil paket yang berasal dari port 443!
+
+- display filter: `tcp.srcport == 443 || udp.srcport == 443`
+
+![img 4](./assets/5_1.png)
+
 ## 6. Filter sehingga wireshark hanya menampilkan paket yang menuju ke lipi.go.id !
 
 - display filter: `http contains "lipi.go.id"`
